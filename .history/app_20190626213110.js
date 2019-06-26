@@ -14,10 +14,6 @@ function loadEventListeners() {
   form.addEventListener('submit' , addTask);
   //remove task event
   taskList.addEventListener('click', removeTask);
-  //clear task event
-  clearBtn.addEventListener('click' , clearTask);
-  //filter tasks event
-  filter.addEventListener('keyup', filterTask);
 }
 
 //add task funtion from  the form above
@@ -55,35 +51,7 @@ e.preventDefault(); //prevent default behaviour of the function from happening
 function removeTask(e) {
   if(e.target.parentElement.classList.contains('delete-item'))
   {
-    if(confirm('Are you Sure mate?')) {
-      e.target.parentElement.parentElement.remove();
-    }
+    e.target.parentElement.parentElement.remove();
+    console.log(e.target);
   }
-}
-
-//clear task
-function clearTask() {
-  //taskList.innerHTML = '';
-
-  //FASTER VERSION
-
-  while(taskList.firstChild) {
-    taskList.removeChild(taskList.firstChild);
-  }
-}
-
-//filter task
-function filterTask(e) {
-  const text = e.target.value.toLowerCase();
-
-  document.querySelectorAll('.collection-item').forEach(
-  function(task){
-    const item = task.firstChild.textContent;
-    if(item.toLowerCase().indexOf(text) != -1){
-      task.style.display = 'block';
-    } else {
-      task.style.display = 'none';
-
-    }
-  });
 }
