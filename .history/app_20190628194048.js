@@ -35,12 +35,18 @@ function getTasks() {
   tasks.forEach(function(task) {
     //Create li element (copied from line 63)
     const li = document.createElement('li');
+
     li.className = 'collection-item';
     li.appendChild(document.createTextNode(task));
+
     const link = document.createElement('a');
+
     link.className = 'delete-item secondary-content';
+
     link.innerHTML = '<i class= "fa fa-remove"></i>';
+
     li.appendChild(link);
+
     taskList.appendChild(li);
   });
 }
@@ -55,7 +61,7 @@ function addTask(e) { // e stands for event object ( event handler )
   // create li element where we put our tasks
   const li = document.createElement('li');
   //add class
-  li.className = 'collection-item'; // to make it look good we add class name for collection item for each element
+  li.className = 'collection-item' // to make it look good we add class name for collection item for each element
   // create text node and append to li
   li.appendChild(document.createTextNode(taskInput.value));
 
@@ -76,7 +82,7 @@ function addTask(e) { // e stands for event object ( event handler )
   //clear the input
   taskInput.value ='';
 
-  e.preventDefault(); //prevent default behaviour of the function from happening
+e.preventDefault(); //prevent default behaviour of the function from happening
 }
 
 // Store Task

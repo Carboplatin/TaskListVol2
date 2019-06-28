@@ -11,7 +11,7 @@ loadEventListeners();
 //load all event listieners
 function loadEventListeners() {
   //DOM LOAD EVENT
-  document.addEventListener('DOMContentLoaded' , getTasks);  // event that kicks off right after page is loaded- get saved Tasks
+  document.addEventListener('DOMContentLoaded' , getTask);  // event that kicks off right after page is loaded- get saved Tasks
   //add task form
   form.addEventListener('submit' , addTask);
   //remove task event
@@ -23,7 +23,7 @@ function loadEventListeners() {
 }
 
 //Get task from local storage
-function getTasks() {
+function getTask() {
   let tasks;  //initialize task
   if(localStorage.getItem('tasks') === null) {   //check if there is anything in there
     tasks = []; // add to empty array if there isnt something there

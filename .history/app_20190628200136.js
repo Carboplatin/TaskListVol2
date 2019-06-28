@@ -11,7 +11,7 @@ loadEventListeners();
 //load all event listieners
 function loadEventListeners() {
   //DOM LOAD EVENT
-  document.addEventListener('DOMContentLoaded' , getTasks);  // event that kicks off right after page is loaded- get saved Tasks
+  //document.addEventListener('DOMContentLoaded' , getTasks);  // event that kicks off right after page is loaded- get saved Tasks
   //add task form
   form.addEventListener('submit' , addTask);
   //remove task event
@@ -35,12 +35,18 @@ function getTasks() {
   tasks.forEach(function(task) {
     //Create li element (copied from line 63)
     const li = document.createElement('li');
+
     li.className = 'collection-item';
     li.appendChild(document.createTextNode(task));
+
     const link = document.createElement('a');
+
     link.className = 'delete-item secondary-content';
+
     link.innerHTML = '<i class= "fa fa-remove"></i>';
+
     li.appendChild(link);
+
     taskList.appendChild(li);
   });
 }

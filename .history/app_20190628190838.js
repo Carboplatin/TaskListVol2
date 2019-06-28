@@ -1,7 +1,7 @@
 // Define UI variables that we gonna need
 const form = document.querySelector('#task-form');
 const taskList = document.querySelector('.collection');
-const clearBtn = document.querySelector('.clear-tasks');
+const clearBtn = document.querySelector('.clear-task');
 const filter = document.querySelector('#filter');
 const taskInput = document.querySelector('#task');
 
@@ -10,44 +10,19 @@ loadEventListeners();
 
 //load all event listieners
 function loadEventListeners() {
-  //DOM LOAD EVENT
-  document.addEventListener('DOMContentLoaded' , getTasks);  // event that kicks off right after page is loaded- get saved Tasks
   //add task form
   form.addEventListener('submit' , addTask);
   //remove task event
   taskList.addEventListener('click', removeTask);
   //clear task event
-  clearBtn.addEventListener('click' , clearTasks);
+  clearBtn.addEventListener('click' , clearTask);
   //filter tasks event
-  filter.addEventListener('keyup', filterTasks);
-}
-
-//Get task from local storage
-function getTasks() {
-  let tasks;  //initialize task
-  if(localStorage.getItem('tasks') === null) {   //check if there is anything in there
-    tasks = []; // add to empty array if there isnt something there
-  } else {  // if there IS something there
-    tasks = JSON.parse(localStorage.getItem('tasks'));  //if there is something there, set it to whatever is there
-  }
-
-  //we want to loop through those tasks that are there, using forEach LOOP
-  tasks.forEach(function(task) {
-    //Create li element (copied from line 63)
-    const li = document.createElement('li');
-    li.className = 'collection-item';
-    li.appendChild(document.createTextNode(task));
-    const link = document.createElement('a');
-    link.className = 'delete-item secondary-content';
-    link.innerHTML = '<i class= "fa fa-remove"></i>';
-    li.appendChild(link);
-    taskList.appendChild(li);
-  });
+  filter.addEventListener('keyup', filterTask);
 }
 
 //add task funtion from  the form above
 function addTask(e) { // e stands for event object ( event handler )
-                        // we need to make sure there is a value in our box so we put if() statement
+// we need to make sure there is a value in our box so we put if() statement
   if(taskInput.value === ''){
     alert('Add a task'); //if there is nothing inputed to our task box we display message(alert) add a task
   }
@@ -55,7 +30,7 @@ function addTask(e) { // e stands for event object ( event handler )
   // create li element where we put our tasks
   const li = document.createElement('li');
   //add class
-  li.className = 'collection-item'; // to make it look good we add class name for collection item for each element
+  li.className = 'collection-item' // to make it look good we add class name for collection item for each element
   // create text node and append to li
   li.appendChild(document.createTextNode(taskInput.value));
 
@@ -76,21 +51,21 @@ function addTask(e) { // e stands for event object ( event handler )
   //clear the input
   taskInput.value ='';
 
-  e.preventDefault(); //prevent default behaviour of the function from happening
+e.preventDefault(); //prevent default behaviour of the function from happening
 }
 
 // Store Task
 function storeTaskInLocalStorage(task) {
-  let tasks;
-  if(localStorage.getItem('tasks') === null) {
-    tasks = [];
+  let task;
+  if(localStorage.getItem('task') === null) {
+    task = [];
   } else {
-    tasks = JSON.parse(localStorage.getItem('tasks'));  //local storage can only store strings so we 'change'-PARSE as string
+    task = JSON.parse(localStorage.getItem('task'));
   }
 
-  tasks.push(task);
+  task.push(task);
 
-  localStorage.setItem('tasks', JSON.stringify(task));  //must be stored as string hence json
+  localStorage.setItem('task', JSON.stringify(task));
 }
 
 
@@ -105,7 +80,7 @@ function removeTask(e) {
 }
 
 //clear task
-function clearTasks() {
+function clearTask() {
 
   //slow version
 
@@ -119,7 +94,7 @@ function clearTasks() {
 }
 
 //filter task
-function filterTasks(e) {
+function filterTask(e) {
   const text = e.target.value.toLowerCase();
 
   document.querySelectorAll('.collection-item').forEach(

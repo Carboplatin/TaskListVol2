@@ -30,17 +30,23 @@ function getTasks() {
   } else {  // if there IS something there
     tasks = JSON.parse(localStorage.getItem('tasks'));  //if there is something there, set it to whatever is there
   }
-
+console.log(getTasks);
   //we want to loop through those tasks that are there, using forEach LOOP
   tasks.forEach(function(task) {
     //Create li element (copied from line 63)
     const li = document.createElement('li');
+
     li.className = 'collection-item';
     li.appendChild(document.createTextNode(task));
+
     const link = document.createElement('a');
+
     link.className = 'delete-item secondary-content';
+
     link.innerHTML = '<i class= "fa fa-remove"></i>';
+
     li.appendChild(link);
+
     taskList.appendChild(li);
   });
 }
